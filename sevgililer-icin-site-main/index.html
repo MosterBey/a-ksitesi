@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10/07/2023</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="shortcut icon" href="https://img.icons8.com/emoji/1x/purple-heart.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./script.js" defer></script>
+</head>
+
+<body class="bg-black flex flex-col w-screen h-screen relative">
+    <div id="loading">
+        <img src="Animation - 1725883388766.gif" alt="Yükleniyor..." />
+    </div>
+
+    <button id="playMusicBtn" onclick="toggleMusic()" class="play-button">
+        Müziği Başlat
+    </button>
+
+    <script>
+        let audio = null;
+        let isPlaying = false;
+
+        window.addEventListener('load', function() {
+            setTimeout(fg_load, 2000); // Site Yüklenme süresi 2 saniye
+        });
+
+        function fg_load() {
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        function toggleMusic() {
+            if (!isPlaying) {
+                if (!audio) {
+                    audio = new Audio('Gokhan-Turkmen-Ask-2.mp3'); // Müzik dosyasının yolu
+                    audio.loop = true;
+                    
+                }
+                audio.play().then(() => {
+                    document.getElementById('playMusicBtn').innerText = 'Müziği Durdur';
+                    isPlaying = true;
+                    console.log('Müzik çalmaya başladı');
+                }).catch(error => {
+                    console.error('Müzik çalınamadı:', error);
+                });
+            } else {
+                audio.pause();
+                document.getElementById('playMusicBtn').innerText = 'Müziği Başlat';
+                isPlaying = false;
+                console.log('Müzik durduruldu');
+            }
+        }
+    </script>
+
+    <section class="intro">
+        <div class="video-container">
+            <video src="/introsite.mp4" autoplay loop playsinline muted></video>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault(); 
+        });
+    </script>
+
+    <div class="absolute w-full text-white flex flex-col lg:flex-row justify-between itemsg:px-48-center py-12 px-12 l xl:px-48 2xl:px-48 z-20">
+        <p class="font-bold text-center lg:text-left mb-4 lg:mb-0">
+            💜 Sevgili olduğumuz tarih 10.07.2023 💜
+        </p>
+        <p id="time_since_establishment-desktop" class="font-bold hidden lg:inline xl:inline 2xl:inline text-center lg:text-right"></p>
+    </div>
+
+    <div class="animation_text m-auto z-20 text-center">
+        <h1 class="text-2xl lg:text-6xl xl:text-6xl 2xl:text-6xl">
+            Sevgilim 
+            <span class="typewrite" data-period="2000" data-words='[" Sen benim yaşama sebebimsin.", " Sen benim kalbimin atma sebebisin.", " Sen benim her nefes alma sebebimsin.", " Sen benim herşeyimsin.", " Hayatımın tek anlamı.", " SENİ ÇOK SEVİYORUMMM", " İYİKİ SENNN", " İYİKİ BİZZZZ", " HERŞEYİMM", " 1 Sene 2 Ayımız Kutlu olsun SEVGİLİMM" ]'></span>
+        </h1>
+    </div>
+
+    <div class="absolute bottom-0 w-full text-white flex justify-center lg:justify-between py-12 px-12 lg:px-48 xl:px-48 2xl:px-48 items-center z-20">
+        <p id="time_since_establishment-mobile" class="font-bold inline lg:hidden xl:hidden 2xl:hidden text-center"></p>
+    </div>
+
+    <footer class="absolute bottom-0 w-full text-white text-center py-2 bg-black z-30">
+        <p class="text-sm">Created by Prensin <3 </p>
+    </footer>
+</body>
+
+</html>
